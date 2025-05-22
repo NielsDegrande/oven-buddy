@@ -2,7 +2,6 @@
 
 ![Oven Illustration](assets/oven.png)
 
-
 Oven Buddy is a digital twin project that simulates and controls a virtual oven.
 It consists of a frontend web application for interacting with and visualizing the oven,
 a backend API for managing oven state,
@@ -46,3 +45,23 @@ Control `Claude Desktop` or whichever MCP client with voice (built-in or for exa
 - `Claude Desktop`: Did I turn off the oven?
 
 ![MCP Client Screenshot](assets/mcp-client.png)
+
+## Architecture
+
+```mermaid
+graph LR
+    User[User] -->|Voice Commands| MCP[MCP Client/Agent]
+    MCP -->|MCP Protocol| MCPServer[MCP Server]
+    MCPServer -->|REST API| Backend[Backend API]
+    Backend -->|State Management| DigitalTwin[Digital Twin]
+    DigitalTwin -->|WebSocket| Frontend[Frontend UI]
+    DigitalTwin -->|Control Signals| PhysicalOven[Physical Oven]
+    
+    style User fill:#00000,stroke:#333,stroke-width:2px
+    style MCP fill:#00000,stroke:#333,stroke-width:2px
+    style MCPServer fill:#00000,stroke:#333,stroke-width:2px
+    style Backend fill:#00000,stroke:#333,stroke-width:2px
+    style DigitalTwin fill:#00000,stroke:#333,stroke-width:2px
+    style Frontend fill:#00000,stroke:#333,stroke-width:2px
+    style PhysicalOven fill:#00000,stroke:#333,stroke-width:2px
+```
