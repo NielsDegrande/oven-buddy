@@ -1,12 +1,9 @@
-
+import { useOven } from "@/hooks/useOven";
 import React from "react";
-import { LineChart, Line, XAxis, YAxis } from "recharts";
-import { useOven } from "./OvenContext";
+import { Line, LineChart, XAxis, YAxis } from "recharts";
 
-// Format: show changes in temp over time with extra bottom margin
 export default function TempChart() {
   const { history } = useOven();
-  // Last 40 points for clarity
   const data = React.useMemo(
     () => history.slice(-40).map((p, i, arr) => ({
       idx: i,

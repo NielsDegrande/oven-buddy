@@ -1,9 +1,8 @@
+import { useOven } from "@/hooks/useOven";
+import { AnimatePresence, motion } from "framer-motion";
+import { DoorClosed, DoorOpen, Thermometer } from "lucide-react";
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useOven } from "./OvenContext";
-import { DoorOpen, DoorClosed, Thermometer } from "lucide-react";
 
-// OvenTwin: visually renders the oven with a more realistic appearance.
 export default function OvenTwin() {
   const { temp, targetTemp, doorOpen, hasTurkey } = useOven();
 
@@ -21,7 +20,7 @@ export default function OvenTwin() {
           </div>
           {/* Screen */}
           <div className="bg-black/50 rounded-md px-3 py-1 text-teal-100 font-mono text-xs border border-gray-300 tracking-widest shadow min-h-[24px] min-w-[120px] flex items-center justify-center">
-            {doorOpen ? "DOOR OPEN" : `READY ${Math.round(temp)}°C`}
+            {doorOpen ? "DOOR OPEN" : Math.round(temp) + 1 < targetTemp ? `HEATING ${Math.round(temp)}°C` : `READY ${Math.round(temp)}°C`}
           </div>
           {/* Right dial */}
           <div className="w-5 h-5 rounded-full bg-gradient-to-br from-white via-gray-200 to-gray-700 border-2 border-gray-100 flex items-center justify-center shadow">
